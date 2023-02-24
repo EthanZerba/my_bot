@@ -3,10 +3,10 @@ controller_manager:
     update_rate: 30
     use_sim_time: true
 
-    diff cont:
+    diff_cont:
       type: diff_drive_controller/DiffDriveController
 
-    joint broad:
+    joint_broad:
       type: joint_state_broadcaster/JointStateBroadcaster
 
 diff_cont:

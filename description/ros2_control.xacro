@@ -41,8 +41,7 @@
 
     <gazebo>
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
-            <parameters>$(find my_bot)/config/my_controllers.yaml</parameters>
-            <robotNamespace>/my_bot/</robotNamespace>
+            <parameters>/home/ekzerba/dev_ws/src/my_bot/config/my_controllers.yaml</parameters>
         </plugin>
     </gazebo>
 
