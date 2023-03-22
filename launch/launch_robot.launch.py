@@ -55,6 +55,7 @@ def generate_launch_description():
         [
             FindPackageShare("ros2_control_demo_example_2"),
             "config",
+            FindPackageShare("my_bot"),
             "my_controllers.yaml",
         ]
     )
