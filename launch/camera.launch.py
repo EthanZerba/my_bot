@@ -14,7 +14,7 @@ def generate_launch_description():
             executable='v4l2_camera_node',
             output='screen',
             parameters=[{
-                'image_size': [1920,1080],
+                'image_size': [480,360],
                 'camera_frame_id': 'camera_link_optical'
                 }]
     )
