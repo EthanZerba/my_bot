@@ -127,14 +127,14 @@
         <material>Gazebo/Blue</material>
     </gazebo>
 
-    <joint name="left_middle_wheel_joint" type="continuous">
+    <joint name="left_middle_joint" type="continuous">
         <parent link="base_link"/>
-        <child link="left_middle_wheel"/>
+        <child link="left_wheel"/>
         <origin xyz="0 .02 -0.125" rpy="-${pi/2} 0 0"/>
         <axis xyz="0 0 1"/>
     </joint>
     
-    <link name="left_middle_wheel">
+    <link name="left_heel">
         <visual>
             <origin xyz="0 0 0.0381"/>
             <geometry>
@@ -152,19 +152,19 @@
             <origin xyz="0 0 0.0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
-    <gazebo reference="left_middle_wheel">
+    <gazebo reference="left_wheel">
         <material>Gazebo/Blue</material>
     </gazebo>
 
 
-    <joint name="right_middle_wheel_joint" type="continuous">
+    <joint name="right_wheel_joint" type="continuous">
         <parent link="base_link"/>
-        <child link="right_middle_wheel"/>
+        <child link="right_wheel"/>
         <origin xyz="0 -.02 -0.125" rpy="${pi/2} 0 0"/>
         <axis xyz="0 0 -1"/>
     </joint>
     
-    <link name="right_middle_wheel">
+    <link name="right_wheel">
         <visual>
             <origin xyz="0 0 0.0381"/>
             <geometry>
@@ -183,7 +183,7 @@
         </xacro:inertial_cylinder>
     </link>
 
-    <gazebo reference="right_middle_wheel">
+    <gazebo reference="right_wheel">
         <material>Gazebo/Blue</material>
     </gazebo>
 
