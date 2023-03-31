@@ -134,7 +134,7 @@
         <axis xyz="0 0 1"/>
     </joint>
     
-    <link name="left_heel">
+    <link name="left_wheel">
         <visual>
             <origin xyz="0 0 0.0381"/>
             <geometry>
