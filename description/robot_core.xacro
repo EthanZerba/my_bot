@@ -67,7 +67,7 @@
         <material>Gazebo/White</material>
     </gazebo>
 
-    <joint name="left_front_wheel_joint" type="continuous">
+    <!-- <joint name="left_front_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="left_front_wheel"/>
         <origin xyz="0.122 .02 -0.125" rpy="-${pi/2} 0 0"/>
@@ -125,9 +125,9 @@
 
     <gazebo reference="right_front_wheel">
         <material>Gazebo/Blue</material>
-    </gazebo>
+    </gazebo> -->
 
-    <joint name="left_middle_joint" type="continuous">
+    <joint name="left_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="left_wheel"/>
         <origin xyz="0 .02 -0.125" rpy="-${pi/2} 0 0"/>
@@ -187,7 +187,7 @@
         <material>Gazebo/Blue</material>
     </gazebo>
 
-    <joint name="left_back_wheel_joint" type="continuous">
+    <!-- <joint name="left_back_wheel_joint" type="continuous">
         <parent link="base_link"/>
         <child link="left_back_wheel"/>
         <origin xyz="-0.118 .03 -0.125" rpy="-${pi/2} 0 0"/>
@@ -247,7 +247,7 @@
     <gazebo reference="right_back_wheel">
         <material>Gazebo/Blue</material>
 
-    </gazebo>
+    </gazebo> -->
 
 </robot>
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
