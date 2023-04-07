@@ -18,17 +18,16 @@ def generate_launch_description():
     # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
 
+    package_name='my_bot' #<--- CHANGE ME
 
 
     Slam_toolbox = Node(
-        package='slam_toolbox',
-        executable='online_async_launch.py',
-        parameters=[{'params_file': './src/my_bot/config/mapper_params_online_async.yaml',
-                     'use_sim_time': False}],
-        remappings=[
-        ('/odom', '/rtabmap/odom'),
-        ]
-    )
+    package='slam_toolbox',
+    executable='/usr/bin/python3',
+    arguments=['/opt/ros/foxy/share/slam_toolbox/launch/online_async_launch.py'],
+    parameters=[{'params_file': './src/my_bot/config/mapper_params_online_async.yaml', 'use_sim_time': False}],
+    remappings=[('/odom', '/rtabmap/odom')]
+)
 
     twist_mux = Node(
         package='twist_mux',
@@ -41,29 +40,19 @@ def generate_launch_description():
             executable='rtabmap',
             output='screen',
             parameters=[{
-                'RGBD/Enabled': False,
-                'RGBD/RGB/Topic': '/image_raw', # replace with your camera's RGB image topic
-                'Mem/STMSize': 2048, # optional, adjust the memory size as needed
-                'Mem/UseOdomFeatures': True, # optional, enable odometry features for better loop closure detection
-                'Mem/IncrementalMemory': True, # optional, enable incremental loop closure detection
-                'Mem/InitWMWithAllNodes': True, # optional, initialize the word map with all nodes for better localization
+                'RGBD/Enabled': 'False',
+                'rgb/camera_info': '/camera_info',
+                'rgb/image': '/image_raw', # replace with your camera's RGB image topic
+                'Mem/STMSize': '2048', # optional, adjust the memory size as needed
+                'Mem/UseOdomFeatures': 'True', # optional, enable odometry features for better loop closure detection
+                'Mem/IncrementalMemory': 'True', # optional, enable incremental loop closure detection
+                'Mem/InitWMWithAllNodes': 'True', # optional, initialize the word map with all nodes for better localization
             }],
         )
 
-    odom_subscriber = Node(
-    package='my_package',
-    executable='my_odom_subscriber_node',
-    name='my_odom_subscriber',
-    namespace='my_namespace',
-    output='screen',
-    remappings=[
-        ('/odom', '/rtabmap/odom'),
-    ]
-)
 
     return LaunchDescription([
         Slam_toolbox,
         twist_mux,
         Rtabmap,
-        odom_subscriber,
     ])

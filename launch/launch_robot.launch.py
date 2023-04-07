@@ -77,10 +77,10 @@ def generate_launch_description():
         )
     )
     camera = Node(
-    package='v4l2_camera',
-    executable='v4l2_camera_node',
-    output='screen',
-    parameters=[
+        package='v4l2_camera',
+        executable='v4l2_camera_node',
+        output='screen',
+        parameters=[
         {
             'image_size': [480,360],
             'camera_frame_id': 'camera_link_optical'
