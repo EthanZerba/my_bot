@@ -36,19 +36,31 @@ def generate_launch_description():
     )
 
     Rtabmap = Node(
-            package='rtabmap_ros',
-            executable='rtabmap',
-            output='screen',
-            parameters=[{
-                'RGBD/Enabled': 'False',
-                'rgb/camera_info': '/camera_info',
-                'rgb/image': '/image_raw', # replace with your camera's RGB image topic
-                'Mem/STMSize': '2048', # optional, adjust the memory size as needed
-                'Mem/UseOdomFeatures': 'True', # optional, enable odometry features for better loop closure detection
-                'Mem/IncrementalMemory': 'True', # optional, enable incremental loop closure detection
-                'Mem/InitWMWithAllNodes': 'True', # optional, initialize the word map with all nodes for better localization
-            }],
-        )
+    package='rtabmap_ros',
+    executable='rtabmap',
+    output='screen',
+    parameters=[{
+        'RGBD/Enabled': 'false',
+        'subscribe_depth': False,
+        'rgb/camera_info_topic': '/camera_info',
+        'queue_size': 10,
+        'subscribe_scan': True,
+        'rgb/image_topic': '/image_raw', # modify this line to subscribe to the /image_raw topic
+        'Mem/STMSize': '2048', # optional, adjust the memory size as needed
+        'Mem/UseOdomFeatures': 'True', # optional, enable odometry features for better loop closure detection
+        'Mem/IncrementalMemory': 'True', # optional, enable incremental loop closure detection
+        'Mem/InitWMWithAllNodes': 'True', # optional, initialize the word map with all nodes for better localization
+    }],
+    remappings=[
+        ('/image_raw', '/rgb/image'),
+        ('/camera_info', '/rgb/camera_info')
+    ]
+)
+
+
+
+
+
 
 
     return LaunchDescription([
