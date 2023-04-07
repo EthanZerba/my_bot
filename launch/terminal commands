@@ -12,4 +12,4 @@ ros2 launch slam_toolbox  online_async_launch.py params_file:=./src/my_bot/confi
 
 ros2 run twist_mux twist_mux --ros args --params-file ./src/my_bot/config/twist_mux.yaml -r cmd_vel_out:=diff_cont/cmd_vel_unstampted
 
-ros2 launch nav2_bringup navigation_launch.py use_sim_time:=true
+ros2 launch nav2_bringup navigation_launch.py use_sim_time:=false
