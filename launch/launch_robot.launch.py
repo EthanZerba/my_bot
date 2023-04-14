@@ -38,7 +38,7 @@ def generate_launch_description():
         )
 
 
-    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
+    robot_description = Command(['ros2 param get /robot_state_publisher robot_description'])
 
     controller_params_file = os.path.join(get_package_share_directory(package_name),'config','my_controllers.yaml')
 
@@ -98,9 +98,9 @@ def generate_launch_description():
                 'K': [326.9, 0.0, 239.5, 0.0, 326.9, 179.5, 0.0, 0.0, 1.0],
                 'R': [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
                 'P': [326.9, 0.0, 239.5, 0.0, 0.0, 326.9, 179.5, 0.0, 0.0, 0.0, 1.0, 0.0]
+                }
             }
-        }
-    ]
+        ]
 )
 
     rplidar = Node(

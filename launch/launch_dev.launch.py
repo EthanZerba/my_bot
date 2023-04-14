@@ -65,6 +65,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         Slam_toolbox,
+        
         twist_mux,
-        Rtabmap,
+        # Rtabmap,
     ])
