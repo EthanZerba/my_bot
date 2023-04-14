@@ -1,4 +1,3 @@
-
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -29,6 +28,7 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'false', 'use_ros2_control': 'true'}.items()
     )
 
+
     twist_mux_params = os.path.join(get_package_share_directory(package_name),'config','twist_mux.yaml')
     twist_mux = Node(
             package="twist_mux",
@@ -37,8 +37,10 @@ def generate_launch_description():
             remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
         )
 
+    
 
-    robot_description = Command(['ros2 param get /robot_state_publisher robot_description'])
+
+    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
 
     controller_params_file = os.path.join(get_package_share_directory(package_name),'config','my_controllers.yaml')
 
@@ -76,37 +78,13 @@ def generate_launch_description():
             on_start=[joint_broad_spawner],
         )
     )
-    # camera = Node(
-    #     package='v4l2_camera',
-    #         executable='v4l2_camera_node',
-    #         output='screen',
-    #         parameters=[{
-    #             'image_size': [480,360],
-    #             'camera_frame_id': 'camera_link_optical'
-    #             }]
-    # )   
-
-    # rplidar = Node(
-    #         package='rplidar_ros',
-    #         executable='rplidar_composition',
-    #         output='screen',
-    #         parameters=[{
-    #             'serial_port': '/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0',
-    #             'frame_id': 'laser_frame',
-    #             'angle_compensate': True,
-    #             'scan_mode': 'Standard',
-    #         }]
-    #     )
 
 
+    
     return LaunchDescription([
         rsp,
         twist_mux,
         delayed_controller_manager,
         delayed_diff_drive_spawner,
-        delayed_joint_broad_spawner,
-        # camera,
-        # rplidar,
-        
-
+        delayed_joint_broad_spawner
     ])
