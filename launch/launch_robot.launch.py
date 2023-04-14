@@ -76,44 +76,27 @@ def generate_launch_description():
             on_start=[joint_broad_spawner],
         )
     )
-#     camera = Node(
-#         package='v4l2_camera',
-#         executable='v4l2_camera_node',
-#         output='screen',
-#         parameters=[
-#         {
-#             'image_size': [480,360],
-#             'camera_frame_id': 'camera_link_optical'
-#         },
-#         {
-#             'use_ros_time': False,
-#             'camera_info_url': 'file:///home/user/catkin_ws/src/my_robot/config/camera_info.yaml',
-#             'camera_name': 'my_camera',
-#             'image_transport': 'compressed',
-#             'camera_info': {
-#                 'width': 480,
-#                 'height': 360,
-#                 'distortion_model': 'plumb_bob',
-#                 'D': [0.0, 0.0, 0.0, 0.0, 0.0],
-#                 'K': [326.9, 0.0, 239.5, 0.0, 326.9, 179.5, 0.0, 0.0, 1.0],
-#                 'R': [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
-#                 'P': [326.9, 0.0, 239.5, 0.0, 0.0, 326.9, 179.5, 0.0, 0.0, 0.0, 1.0, 0.0]
-#                 }
-#             }
-#         ]
-# )
+    camera = Node(
+        package='v4l2_camera',
+            executable='v4l2_camera_node',
+            output='screen',
+            parameters=[{
+                'image_size': [480,360],
+                'camera_frame_id': 'camera_link_optical'
+                }]
+)
 
-    # rplidar = Node(
-    #         package='rplidar_ros',
-    #         executable='rplidar_composition',
-    #         output='screen',
-    #         parameters=[{
-    #             'serial_port': '/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0',
-    #             'frame_id': 'laser_frame',
-    #             'angle_compensate': True,
-    #             'scan_mode': 'Standard',
-    #         }]
-    #     )
+    rplidar = Node(
+            package='rplidar_ros',
+            executable='rplidar_composition',
+            output='screen',
+            parameters=[{
+                'serial_port': '/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0',
+                'frame_id': 'laser_frame',
+                'angle_compensate': True,
+                'scan_mode': 'Standard',
+            }]
+        )
 
 
     return LaunchDescription([
@@ -122,8 +105,8 @@ def generate_launch_description():
         delayed_controller_manager,
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner,
-        # camera,
-        # rplidar,
+        camera,
+        rplidar,
         
 
     ])
