@@ -22,11 +22,11 @@ def generate_launch_description():
 
 
     Slam_toolbox = Node(
-    package='slam_toolbox',
-    executable='/usr/bin/python3',
-    arguments=['/opt/ros/foxy/share/slam_toolbox/launch/online_async_launch.py'],
-    parameters=[{'params_file': './src/my_bot/config/mapper_params_online_async.yaml', 'use_sim_time': False}],
-    remappings=[('/odom', '/rtabmap/odom')]
+        package='slam_toolbox',
+        executable='/usr/bin/python3',
+        arguments=['/opt/ros/foxy/share/slam_toolbox/launch/online_async_launch.py'],
+        parameters=[{'params_file': './src/my_bot/config/mapper_params_online_async.yaml', 'use_sim_time': False}],
+        remappings=[('/odom', '/rtabmap/odom')]
 )
 
     twist_mux = Node(
@@ -36,26 +36,29 @@ def generate_launch_description():
     )
 
     Rtabmap = Node(
-    package='rtabmap_ros',
-    executable='rtabmap',
-    output='screen',
-    parameters=[{
-        'RGBD/Enabled': 'false',
-        'subscribe_depth': False,
-        'rgb/camera_info_topic': '/camera_info',
-        'queue_size': 10,
-        'subscribe_scan': True,
-        'rgb/image_topic': '/image_raw', # modify this line to subscribe to the /image_raw topic
-        'Mem/STMSize': '2048', # optional, adjust the memory size as needed
-        'Mem/UseOdomFeatures': 'True', # optional, enable odometry features for better loop closure detection
-        'Mem/IncrementalMemory': 'True', # optional, enable incremental loop closure detection
-        'Mem/InitWMWithAllNodes': 'True', # optional, initialize the word map with all nodes for better localization
-    }],
-    remappings=[
-        ('/image_raw', '/rgb/image'),
-        ('/camera_info', '/rgb/camera_info')
-    ]
-)
+        package='rtabmap_ros',
+        executable='rtabmap',
+        output='screen',
+        parameters=[{
+            'RGBD/Enabled': 'false',
+            'subscribe_depth': False,
+            'rgb/camera_info_topic': '/camera_info',
+            'queue_size': 10,
+            'subscribe_scan': True,
+            'rgb/image_topic': '/image_raw', # modify this line to subscribe to the /image_raw topic
+            'Mem/STMSize': '2048', # optional, adjust the memory size as needed
+            'Mem/UseOdomFeatures': 'True', # optional, enable odometry features for better loop closure detection
+            'Mem/IncrementalMemory': 'True', # optional, enable incremental loop closure detection
+            'Mem/InitWMWithAllNodes': 'True', # optional, initialize the word map with all nodes for better localization
+        }],
+        remappings=[
+            ('/image_raw', '/rgb/image'),
+            ('/camera_info', '/rgb/camera_info')
+        ]
+    )
+
+
+
 
 
 
@@ -65,7 +68,6 @@ def generate_launch_description():
 
     return LaunchDescription([
         Slam_toolbox,
-        
+        Rtabmap,
         twist_mux,
-        # Rtabmap,
     ])

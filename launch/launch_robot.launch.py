@@ -100,6 +100,21 @@ def generate_launch_description():
                 'scan_mode': 'Standard',
             }]
         )
+    
+    imu = Node(
+            package='bno055',
+            executable='bno055_node',
+            name='bno055',
+            output='screen',
+            parameters=[{
+                'operation_mode': 0,  # IMU mode
+                'sensor_mode': 9,  # NDOF mode
+                'output_format': 0,  # Quaternion format
+                'axis_remap_config': 6,  # YXZ remap
+                'temperature_source': 1,  # Internal temperature sensor
+                'frame_id': 'imu_link'
+            }]
+        )
 
 
     
@@ -111,4 +126,5 @@ def generate_launch_description():
         delayed_joint_broad_spawner,
         camera,
         lidar,
+        imu,
     ])

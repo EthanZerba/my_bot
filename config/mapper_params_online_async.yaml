@@ -14,6 +14,7 @@ slam_toolbox:
     map_frame: map
     base_frame: base_footprint
     scan_topic: /scan
+    imu_topic: /imu/data
     mode: mapping #localization
 
     # if you'd like to immediately start continuing a map at a given pose
@@ -71,3 +72,6 @@ slam_toolbox:
     minimum_angle_penalty: 0.9
     minimum_distance_penalty: 0.5
     use_response_expansion: true
+
+    imu_linear_acceleration_variance: 0.01 # adjust as needed
+    imu_angular_velocity_variance: 0
