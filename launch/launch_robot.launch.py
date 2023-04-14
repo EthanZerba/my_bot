@@ -103,17 +103,17 @@ def generate_launch_description():
         ]
 )
 
-    rplidar = Node(
-            package='rplidar_ros',
-            executable='rplidar_composition',
-            output='screen',
-            parameters=[{
-                'serial_port': '/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0',
-                'frame_id': 'laser_frame',
-                'angle_compensate': True,
-                'scan_mode': 'Standard',
-            }]
-        )
+    # rplidar = Node(
+    #         package='rplidar_ros',
+    #         executable='rplidar_composition',
+    #         output='screen',
+    #         parameters=[{
+    #             'serial_port': '/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0',
+    #             'frame_id': 'laser_frame',
+    #             'angle_compensate': True,
+    #             'scan_mode': 'Standard',
+    #         }]
+    #     )
 
 
     return LaunchDescription([
@@ -122,8 +122,8 @@ def generate_launch_description():
         delayed_controller_manager,
         delayed_diff_drive_spawner,
         delayed_joint_broad_spawner,
-        rplidar,
         camera,
-
+        # rplidar,
+        
 
     ])
